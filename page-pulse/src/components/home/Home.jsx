@@ -1,5 +1,5 @@
 import FormInput from "./FormInput"
-import { isValidUrl } from "../../utils/pagehealth";
+import { checkPageScore, isValidUrl } from "../../utils/pagehealth"
 import { useState } from "react"
 import Results from "./Results"
 
@@ -8,7 +8,7 @@ function Home() {
     const [err, setErr] = useState("");
     const [result, setResult] = useState(null);
 
-    const handleCheck = async () => {
+    const handleCheck = () => {
         setErr("");
         setResult(null);
 
@@ -17,23 +17,8 @@ function Home() {
             return;
         }
 
-        try {
-            const res = await fetch('http://localhost:5050/api/check', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ url: pageUrl }),
-            });
-
-            const data = await res.json();
-            if (res.ok) {
-                setResult(data);
-            } 
-        } catch (err) {
-            console.error(err);
-            setErr('Failed to connect to the server');
-        }
+        const res = checkPageScore();
+        setResult(res);
     };
 
     return (
