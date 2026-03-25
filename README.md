@@ -128,6 +128,10 @@ pagepulse/
 
 ---
 
+##Current Issues
+*Currently the grading system gives out results that are inaccurate.
+*It detects websites that have ideal semantic tag practice but fails to read accurately how many semantic tags are actually used and also missing image alts
+
 ## License
 
 This project is licensed under the **MIT License** © 2026 Bitrus Yacham Duniya
